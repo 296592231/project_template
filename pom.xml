@@ -3,11 +3,16 @@
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
+    <parent>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-starter-parent</artifactId>
+        <version>3.2.6</version>
+        <relativePath/>
+    </parent>
 
     <groupId>com.jl</groupId>
     <artifactId>project_template</artifactId>
     <version>${revision}</version>
-    <packaging>pom</packaging>
 
     <modules>
         <module>jl-common</module>
@@ -15,12 +20,127 @@
         <module>jl-admin</module>
         <module>jl-xxl-job</module>
     </modules>
+    <packaging>pom</packaging>
 
     <properties>
         <java.version>17</java.version>
+        <!--项目统一版本号-->
         <revision>1.0.0</revision>
+
+        <spring-boot.version>3.2.6</spring-boot.version>
+
+        <!--项目统一编码-->
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+
+        <!--redis 包相关版本-->
+        <redisson.version>3.29.0</redisson.version>
+        <lock4j.version>2.2.7</lock4j.version>
+
+        <lombok.version>1.18.32</lombok.version>
+        <hutool.version>5.8.27</hutool.version>
+        <!-- 限制框架中的fastjson版本 -->
+        <fastjson.version>1.2.83</fastjson.version>
     </properties>
+
+    <dependencyManagement>
+        <dependencies>
+            <!--redis 分布式数据结构和功能: redisson-->
+            <dependency>
+                <groupId>org.redisson</groupId>
+                <artifactId>redisson-spring-boot-starter</artifactId>
+                <version>${redisson.version}</version>
+            </dependency>
+
+            <!--redis 分布式锁功能-->
+            <dependency>
+                <groupId>com.baomidou</groupId>
+                <artifactId>lock4j-redisson-spring-boot-starter</artifactId>
+                <version>${lock4j.version}</version>
+            </dependency>
+
+            <!--其他辅助类工具-->
+            <dependency>
+                <groupId>org.projectlombok</groupId>
+                <artifactId>lombok</artifactId>
+                <version>${lombok.version}</version>
+            </dependency>
+
+            <!--springboot 相关-->
+            <dependency>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-configuration-processor</artifactId>
+                <version>${spring-boot.version}</version>
+            </dependency>
+
+            <!-- hutool 的依赖配置-->
+            <dependency>
+                <groupId>cn.hutool</groupId>
+                <artifactId>hutool-bom</artifactId>
+                <version>${hutool.version}</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+
+            <dependency>
+                <groupId>com.alibaba</groupId>
+                <artifactId>fastjson</artifactId>
+                <version>${fastjson.version}</version>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
+
+    <build>
+        <plugins>
+            <!-- maven代码编译插件 -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>3.1</version>
+                <configuration>
+                    <encoding>${project.build.sourceEncoding}</encoding>
+                    <!-- 制定源码编译JDK版本 -->
+                    <source>${java.version}</source>
+                    <!-- 制定源码编译JDK版本 -->
+                    <target>${java.version}</target>
+                    <!-- 强制打印出compile的错误信息 -->
+                    <forceJavacCompilerUse>true</forceJavacCompilerUse>
+                </configuration>
+            </plugin>
+            <!-- 执行测试用例插件，打包时运行测试用例 mvn test -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-surefire-plugin</artifactId>
+                <version>2.19.1</version>
+                <configuration>
+                    <!-- 跳过测试用例 -->
+                    <skipTests>true</skipTests>
+                </configuration>
+            </plugin>
+            <!--<plugin>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-maven-plugin</artifactId>
+                <configuration>
+                    <fork>true</fork>
+                </configuration>
+            </plugin>-->
+        </plugins>
+
+<!--        <resources>-->
+<!--            &lt;!&ndash; 此处最为重要-否则打包后没有你的JSP页面模板，一定要记得写为资源文件 targetPath 设置必须是 META-INF/resources-->
+<!--            我项目做出来的时候因为没写resources导致打包运行后正常启动，各个接口也都正常访问，但是所有的jsp页面都会报404，找不到页面 ，因为这个问题浪费了我大半天时间&ndash;&gt;-->
+<!--            <resource>-->
+<!--                <directory>src/main/webapp</directory>-->
+<!--                <targetPath>META-INF/resources</targetPath>-->
+<!--                <includes>-->
+<!--                    <include>**/**</include>-->
+<!--                </includes>-->
+<!--            </resource>-->
+<!--            <resource>-->
+<!--                <directory>src/main/resources</directory>-->
+<!--                <filtering>true</filtering>-->
+<!--            </resource>-->
+<!--        </resources>-->
+    </build>
 
 
     <repositories>

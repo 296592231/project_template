@@ -1,0 +1,10 @@
+spring:
+  profiles:
+    active: dev
+  application:
+    name: project_template
+  main:
+    allow-bean-definition-overriding: true  #允许bean定义覆盖
+  redis:
+    config: "classpath:redisson.yml"
+

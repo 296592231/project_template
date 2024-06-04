@@ -12,4 +12,49 @@
     <artifactId>jl-app</artifactId>
     <packaging>jar</packaging>
 
+    <dependencies>
+        <!--内部模块引用-->
+        <dependency>
+            <groupId>com.jl</groupId>
+            <artifactId>jl-common-redis</artifactId>
+        </dependency>
+
+        <!-- springboot构件：web支持  rest风格 -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-web</artifactId>
+        </dependency>
+
+        <!--springboot构件：对整个项目监控，用到时可以查询相关文档 ：https://spring.io/guides/gs/actuator-service/-->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-actuator</artifactId>
+        </dependency>
+
+        <!--springboot构件： 测试类支持-->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-test</artifactId>
+        </dependency>
+
+        <!-- 内嵌的tomcat支持模块  如何是jsp作为前端页面那么需要单独加这个 -->
+<!--        <dependency>-->
+<!--            <groupId>org.apache.tomcat.embed</groupId>-->
+<!--            <artifactId>tomcat-embed-jasper</artifactId>-->
+<!--            <scope>provided</scope>-->
+<!--        </dependency>-->
+
+
+    </dependencies>
+
+
+    <build>
+        <finalName>jl-app</finalName>
+        <plugins>
+            <plugin>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-maven-plugin</artifactId>
+            </plugin>
+        </plugins>
+    </build>
 </project>

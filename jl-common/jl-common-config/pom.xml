@@ -5,12 +5,13 @@
     <modelVersion>4.0.0</modelVersion>
     <parent>
         <groupId>com.jl</groupId>
-        <artifactId>project_template</artifactId>
+        <artifactId>jl-common</artifactId>
         <version>${revision}</version>
     </parent>
 
-    <artifactId>jl-xxl-job</artifactId>
-    <version>1.0.0</version>
-    <packaging>jar</packaging>
+    <artifactId>jl-common-config</artifactId>
 
+    <dependencies>
+
+    </dependencies>
 </project>
