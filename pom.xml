@@ -44,6 +44,29 @@
 
     <dependencyManagement>
         <dependencies>
+            <!--内部模块-->
+            <dependency>
+                <groupId>com.jl</groupId>
+                <artifactId>jl-common-redis</artifactId>
+                <version>${revision}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.jl</groupId>
+                <artifactId>jl-common-redis</artifactId>
+                <version>${revision}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.jl</groupId>
+                <artifactId>jl-common-core</artifactId>
+                <version>${revision}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.jl</groupId>
+                <artifactId>jl-common-config</artifactId>
+                <version>${revision}</version>
+            </dependency>
+
+
             <!--redis 分布式数据结构和功能: redisson-->
             <dependency>
                 <groupId>org.redisson</groupId>

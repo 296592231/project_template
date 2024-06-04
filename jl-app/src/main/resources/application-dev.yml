@@ -1,0 +1,6 @@
+env:
+  redis:
+    host: 192.168.1.133
+    port: 6379
+    password: myRedis
+    database: 5

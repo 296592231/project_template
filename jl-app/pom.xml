@@ -15,8 +15,8 @@
     <dependencies>
         <!--内部模块引用-->
         <dependency>
-            <groupId>com.jl</groupId>
-            <artifactId>jl-common-redis</artifactId>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-data-redis</artifactId>
         </dependency>
 
         <!-- springboot构件：web支持  rest风格 -->

@@ -1,1 +1,1 @@
-org.dromara.common.redis.config.RedisConfig
+com.jl.app.config.RedisConfiguration
